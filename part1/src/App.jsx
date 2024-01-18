@@ -1,22 +1,68 @@
-const Hello = (props) => {
-  console.log(props);
+const Header = ({ course }) => {
   return (
-    <div>
+    <>
+      <h1>{course}</h1>
+    </>
+  );
+};
+
+const Content = ({
+  part1,
+  part2,
+  part3,
+  exercises1,
+  exercises2,
+  exercises3,
+}) => {
+  return (
+    <>
       <p>
-        Hello {props.name}, you are {props.age}
+        {part1} {exercises1}
       </p>
-    </div>
+      <p>
+        {part2} {exercises2}
+      </p>
+      <p>
+        {part3} {exercises3}
+      </p>
+    </>
+  );
+};
+
+//I have chosen to destruct the props since I have been taught it's the modern way of doing it and it makes the code more readable. I hope it's still okey for the assignment.
+const Total = ({ exercises1, exercises2, exercises3 }) => {
+  return (
+    <>
+      <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+    </>
   );
 };
 
 const App = () => {
-  const name = "Pamela";
-  const age = 35;
+  const course = "Half Stack application development";
+  const part1 = "Fundamentals of React";
+  const exercises1 = 10;
+  const part2 = "Using props to pass data";
+  const exercises2 = 7;
+  const part3 = "State of a component";
+  const exercises3 = 14;
+
   return (
     <div>
-      <h1>Greetings!</h1>
-
-      <Hello name={name} age={age} />
+      <Header course={course} />
+      <Content
+        part1={part1}
+        part2={part2}
+        part3={part3}
+        exercises1={exercises1}
+        exercises2={exercises2}
+        exercises3={exercises3}
+      />
+      <Total
+        exercises1={exercises1}
+        exercises2={exercises2}
+        exercises3={exercises3}
+      />
     </div>
   );
 };
