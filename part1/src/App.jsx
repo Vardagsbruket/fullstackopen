@@ -14,17 +14,38 @@ const Content = ({
   exercises2,
   exercises3,
 }) => {
+  const Part1 = ({ part1, exercises1 }) => {
+    return (
+      <>
+        <p>
+          {part1} {exercises1}
+        </p>
+      </>
+    );
+  };
+  const Part2 = ({ part2, exercises2 }) => {
+    return (
+      <>
+        <p>
+          {part2} {exercises2}
+        </p>
+      </>
+    );
+  };
+  const Part3 = ({ part3, exercises3 }) => {
+    return (
+      <>
+        <p>
+          {part3} {exercises3}
+        </p>
+      </>
+    );
+  };
   return (
     <>
-      <p>
-        {part1} {exercises1}
-      </p>
-      <p>
-        {part2} {exercises2}
-      </p>
-      <p>
-        {part3} {exercises3}
-      </p>
+      <Part1 part1={part1} exercises1={exercises1} />
+      <Part2 part2={part2} exercises2={exercises2} />
+      <Part3 part3={part3} exercises3={exercises3} />
     </>
   );
 };
