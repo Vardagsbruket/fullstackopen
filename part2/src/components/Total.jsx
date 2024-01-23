@@ -4,7 +4,7 @@ export const Total = ({ course }) => {
   const totalExercises = parts.reduce((sum, order) => sum + order.exercises, 0);
   return (
     <>
-      <p>Total of {totalExercises} exercises</p>
+      <h4>Total of {totalExercises} exercises</h4>
     </>
   );
 };

@@ -50,7 +50,6 @@ const Content = ({
   );
 };
 
-//I have chosen to destruct the props since I have been taught it's the modern way of doing it and it makes the code more readable. I hope it's still okey for the assignment.
 const Total = ({ exercises1, exercises2, exercises3 }) => {
   return (
     <>

@@ -5,9 +5,14 @@ import { Total } from "./Total";
 export const Course = ({ course }) => {
   return (
     <>
-      <Header course={course} />
-      <Content course={course} />
-      <Total course={course} />
+      <h1>Web development curriculum</h1>
+      {course.map((course) => (
+        <section key={course.id}>
+          <Header course={course} />
+          <Content course={course} />
+          <Total course={course} />
+        </section>
+      ))}
     </>
   );
 };
