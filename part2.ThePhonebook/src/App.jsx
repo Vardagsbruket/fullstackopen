@@ -41,12 +41,10 @@ const App = () => {
   };
 
   const deletePerson = (id) => {
-    const person = persons.find((person) => person.id === id);
-
-    personService.deletePerson(id).then((returnedPersons) => {
-      setPersons(
-        persons.map((person) => (person.id !== id ? person : returnedPersons))
-      );
+    personService.deletePerson(id).then(() => {
+      setPersons(persons.filter((person) => person.id !== id));
+      setNewName("");
+      setNewNumber("");
     });
   };
 
@@ -65,6 +63,7 @@ const App = () => {
   const filteredPersons = persons.filter((person) =>
     person.name.toLowerCase().includes(searchValue.toLowerCase())
   );
+
   return (
     <div>
       <h2>Phonebook</h2>
