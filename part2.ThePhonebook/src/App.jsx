@@ -90,7 +90,7 @@ const App = () => {
 
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h1>The Phonebook</h1>
       <Filter handleSearch={handleSearch} />
 
       <h3>Add a new person</h3>
