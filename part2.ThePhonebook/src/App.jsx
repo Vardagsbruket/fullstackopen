@@ -40,6 +40,16 @@ const App = () => {
     }
   };
 
+  const deletePerson = (id) => {
+    const person = persons.find((person) => person.id === id);
+
+    personService.deletePerson(id).then((returnedPersons) => {
+      setPersons(
+        persons.map((person) => (person.id !== id ? person : returnedPersons))
+      );
+    });
+  };
+
   const handleNameChange = (event) => {
     console.log(event.target.value);
     setNewName(event.target.value);
@@ -70,7 +80,7 @@ const App = () => {
       />
 
       <h3>Numbers</h3>
-      <Persons filteredPersons={filteredPersons} />
+      <Persons filteredPersons={filteredPersons} deletePerson={deletePerson} />
     </div>
   );
 };
