@@ -3,6 +3,7 @@ import { Filter } from "./components/Filter";
 import { PersonForm } from "./components/PersonForm";
 import { Persons } from "./components/Persons";
 import personService from "./services/persons";
+import notes from "../../part2.Notes/src/services/notes";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -26,17 +27,40 @@ const App = () => {
     );
 
     if (nameExists) {
-      alert(`${newName} is already added to the phonebook.`);
-    } else {
-      const personObject = {
-        name: newName,
-        number: newNumber,
-      };
-      personService.create(personObject).then((returnedPerson) => {
-        setPersons(persons.concat(returnedPerson));
-        setNewName("");
-        setNewNumber("");
-      });
+      const confirmed = window.confirm(
+        `${newName} is already added to the phonebook, replace old number with the new number?`
+      );
+      if (confirmed) {
+        const existingPerson = filteredPersons.find(
+          (person) => person.name === newName
+        );
+        const updatedPerson = { ...existingPerson, number: newNumber };
+
+        personService
+          .update(existingPerson.id, updatedPerson)
+          .then((returnedPerson) => {
+            setPersons(
+              persons.map((person) =>
+                person.id !== existingPerson.id ? person : returnedPerson
+              )
+            );
+            setNewName("");
+            setNewNumber("");
+          })
+          .catch((error) => {
+            console.error("Error updating number:", error);
+          });
+      } else {
+        const personObject = {
+          name: newName,
+          number: newNumber,
+        };
+        personService.create(personObject).then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson));
+          setNewName("");
+          setNewNumber("");
+        });
+      }
     }
   };
 
