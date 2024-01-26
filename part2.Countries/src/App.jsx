@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { SearchFilter } from "./components/SearchFilter";
 import Countries from "./components/Countries";
 import countryService from "./services/countries";
+import Notification from "./components/Notification";
 
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     countryService.getAll().then((initialCountries) => {
@@ -23,10 +25,22 @@ const App = () => {
     country.name.common.toLowerCase().includes(searchValue.toLowerCase())
   );
 
+  useEffect(() => {
+    if (filteredCountries.length > 10) {
+      setMessage(`Too many matches, please specify another letter`);
+    } else {
+      setMessage("");
+    }
+  }, [filteredCountries.length]);
+
   return (
     <>
       <SearchFilter handleSearch={handleSearch} />
-      <Countries countries={countries} filteredCountries={filteredCountries} />
+      <Notification message={message} searchValue={searchValue} />
+      <Countries
+        searchValue={searchValue}
+        filteredCountries={filteredCountries}
+      />
     </>
   );
 };

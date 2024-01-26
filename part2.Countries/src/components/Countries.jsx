@@ -1,4 +1,7 @@
-const Countries = ({ filteredCountries, countries }) => {
+const Countries = ({ filteredCountries, searchValue }) => {
+  if (searchValue === null || searchValue === "") {
+    return null;
+  }
   return (
     <>
       <ul>
