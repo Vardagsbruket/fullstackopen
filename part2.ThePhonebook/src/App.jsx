@@ -12,6 +12,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     personService.getAll().then((initialPersons) => {
@@ -55,6 +56,10 @@ const App = () => {
           })
           .catch((error) => {
             console.error("Error updating number:", error);
+            setErrorMessage(`'${newName}' was already removed from server`);
+            setTimeout(() => {
+              setErrorMessage(null);
+            }, 5000);
           });
       }
     } else {
@@ -104,7 +109,8 @@ const App = () => {
   return (
     <div>
       <h1>The Phonebook</h1>
-      <Notification message={successMessage} />
+      <Notification message={successMessage} errorMessage={errorMessage} />
+
       <Filter handleSearch={handleSearch} />
 
       <h3>Add a new person</h3>
