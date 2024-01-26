@@ -11,7 +11,7 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [searchValue, setSearchValue] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
     personService.getAll().then((initialPersons) => {
@@ -49,6 +49,9 @@ const App = () => {
             setNewName("");
             setNewNumber("");
             setSuccessMessage(`Updated ${newName}'s number.`);
+            setTimeout(() => {
+              setSuccessMessage(null);
+            }, 3000);
           })
           .catch((error) => {
             console.error("Error updating number:", error);
@@ -65,6 +68,9 @@ const App = () => {
         setNewName("");
         setNewNumber("");
         setSuccessMessage(`Added ${newName} to the phonebook.`);
+        setTimeout(() => {
+          setSuccessMessage(null);
+        }, 3000);
       });
     }
 
