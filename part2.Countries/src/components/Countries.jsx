@@ -1,7 +1,9 @@
 import { useState } from "react";
+import Weather from "./Weather";
 
 const Countries = ({ filteredCountries, searchValue }) => {
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCapital, setSelectedCapital] = useState(null);
 
   if (searchValue === null || searchValue === "") {
     return null;
@@ -33,6 +35,7 @@ const Countries = ({ filteredCountries, searchValue }) => {
 
   const handleShowCountry = (country) => {
     setSelectedCountry(country);
+    setSelectedCapital(country.capital);
   };
 
   return (
@@ -61,6 +64,7 @@ const Countries = ({ filteredCountries, searchValue }) => {
           <img src={selectedCountry.flags.png} alt="Flag" />
         </div>
       )}
+      {selectedCapital && <Weather selectedCapital={selectedCapital} />}
     </>
   );
 };

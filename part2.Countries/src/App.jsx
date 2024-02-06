@@ -15,7 +15,7 @@ const App = () => {
       setCountries(initialCountries);
     });
   }, []);
-  console.log("render", countries.length, "countries");
+  //console.log("render", countries.length, "countries");
 
   const handleSearch = (event) => {
     setSearchValue(event.target.value);
