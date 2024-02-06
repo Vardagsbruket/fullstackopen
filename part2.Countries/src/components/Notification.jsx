@@ -1,5 +1,5 @@
 const Notification = ({ message, searchValue }) => {
-  if (message === null && (searchValue === null || searchValue === "")) {
+  if (message === null || searchValue === null || searchValue === "") {
     return null;
   }
 
