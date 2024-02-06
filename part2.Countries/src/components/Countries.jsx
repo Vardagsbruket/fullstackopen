@@ -28,7 +28,7 @@ const Countries = ({ filteredCountries, searchValue }) => {
   }
 
   if (filteredCountries.length > 10) {
-    return null; // Return null if more than 10 countries
+    return null;
   }
 
   const handleShowCountry = (country) => {
