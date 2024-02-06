@@ -11,7 +11,7 @@ const App = () => {
 
   useEffect(() => {
     countryService.getAll().then((initialCountries) => {
-      console.log("promise fulfilled");
+      //console.log("promise fulfilled");
       setCountries(initialCountries);
     });
   }, []);
